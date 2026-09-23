@@ -28,6 +28,12 @@
       "expo-status-bar",
       "expo-splash-screen",
       "expo-web-browser"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6158a16e-6bcb-43e8-adaa-7e0a5a40f37a"
+      }
+    }
   }
 }

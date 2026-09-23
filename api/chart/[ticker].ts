@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import YahooFinance from 'yahoo-finance2';
 
-const yf = new YahooFinance();
+const yf = new YahooFinance({ suppressNotices: ['yahooSurvey'] });
 
 type RangeKey = '1D' | '1W' | '1M' | '3M' | '1Y' | '5Y';
 

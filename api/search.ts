@@ -12,7 +12,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const result = await yahooFinance.search(q.trim(), {
+    const result = await yf.search(q.trim(), {
       newsCount: 0,
       quotesCount: 10,
     });

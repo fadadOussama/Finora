@@ -14,7 +14,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const symbol = ticker.toUpperCase();
 
   try {
-    const result = await yahooFinance.search(symbol, {
+    const result = await yf.search(symbol, {
       newsCount: 10,
       quotesCount: 0,
     });

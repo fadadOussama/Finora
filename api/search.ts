@@ -1,7 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import YahooFinance from 'yahoo-finance2';
-
-const yf = new YahooFinance({ suppressNotices: ['yahooSurvey'] });
+import yahooFinance from 'yahoo-finance2';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -12,7 +10,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const result = await yf.search(q.trim(), {
+    const result = await yahooFinance.search(q.trim(), {
       newsCount: 0,
       quotesCount: 10,
     });

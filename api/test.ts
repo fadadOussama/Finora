@@ -1,12 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import yahooFinance from 'yahoo-finance2';
 
 export default async function handler(_req: VercelRequest, res: VercelResponse) {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const mod = require('yahoo-finance2') as { default: new (opts?: object) => { quote: (s: string) => Promise<unknown> } };
-    const YF = mod.default;
-    const yf = new YF({ suppressNotices: ['yahooSurvey'] });
-    const q = await yf.quote('AAPL') as { regularMarketPrice: number };
+    const q = await yahooFinance.quote('AAPL', {}, { validateResult: false }) as { regularMarketPrice: number };
     return res.status(200).json({ ok: true, price: q.regularMarketPrice });
   } catch (err: unknown) {
     const e = err as Error;

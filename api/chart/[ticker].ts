@@ -1,5 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import yahooFinance from 'yahoo-finance2';
+import YahooFinance from 'yahoo-finance2';
+
+const yf = new YahooFinance({ suppressNotices: ['yahooSurvey'] });
 
 type RangeKey = '1D' | '1W' | '1M' | '3M' | '1Y' | '5Y';
 
@@ -43,7 +45,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const period1 = getPeriod1(rangeKey);
 
   try {
-    const result = await yahooFinance.chart(symbol, { period1, interval }, { validateResult: false });
+    const result = await yf.chart(symbol, { period1, interval }, { validateResult: false });
 
     const quotes = result.quotes ?? [];
     const points = quotes

@@ -1,9 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import yahooFinance from 'yahoo-finance2';
+import YahooFinance from 'yahoo-finance2';
+
+const yf = new YahooFinance({ suppressNotices: ['yahooSurvey'] });
 
 export default async function handler(_req: VercelRequest, res: VercelResponse) {
   try {
-    const q = await yahooFinance.quote('AAPL', {}, { validateResult: false }) as { regularMarketPrice: number };
+    const q = await yf.quote('AAPL', {}, { validateResult: false }) as { regularMarketPrice: number };
     return res.status(200).json({ ok: true, price: q.regularMarketPrice });
   } catch (err: unknown) {
     const e = err as Error;
